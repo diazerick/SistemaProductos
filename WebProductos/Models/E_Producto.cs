@@ -13,6 +13,7 @@ namespace WebProductos.Models
         public decimal Precio { get; set; }
         public DateTime FechaIngreso { get; set; }
         public bool Disponible { get; set; }
+        public int Proveedor { get; set; }
 
         //Propiedad de solo lectura
         public string DisponibleDescripcion

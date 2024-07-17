@@ -1,0 +1,66 @@
+﻿@using WebProductos.Models
+
+@model E_Producto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VistaEditar</title>
+    <!-- Agregando referencia al archivo CSS de Bootstrap -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <!-- Agregando referencia al archivo JS de Bootstrap -->
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Producto</h1>
+
+        <form action="/Producto/Editar" method="post">
+
+            <input type="hidden" name="IdProducto" value="@Model.IdProducto"/>
+
+            <label>Descripcion</label>
+            <input type="text" name="Descripcion" class="form-control" value="@Model.Descripcion" />
+            <br />
+            <label>Precio</label>
+            <input type="text" name="Precio" class="form-control" value="@Model.Precio" />
+            <br />
+            <label>Fecha Ingreso</label>
+            <input type="date" name="FechaIngreso" class="form-control" value="@Model.FechaIngreso.ToString("yyyy-MM-dd")" />
+            <br />
+            <!-- Radio Buttons -->
+            <label>¿Esta Disponible?</label>
+
+            @if (Model.Disponible == true)
+            {
+                <div>
+                    <input type="radio" name="Disponible" value="true" checked />
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio" name="Disponible" value="false" />
+                    <label>No</label>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <input type="radio" name="Disponible" value="true" />
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio" name="Disponible" value="false" checked/>
+                    <label>No</label>
+                </div>
+            }
+            <input type="submit" value="Editar" />
+        </form>
+    </div>
+</body>
+</html>

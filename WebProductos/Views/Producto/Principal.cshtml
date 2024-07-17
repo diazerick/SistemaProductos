@@ -1,0 +1,75 @@
+﻿@using WebProductos.Models
+
+@model List<E_Producto>
+
+@{
+    Layout = null;
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Principal</title>
+
+    <!-- Agregando referencia al archivo CSS de Bootstrap -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <!-- Agregando referencia al archivo JS de Bootstrap -->
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-1">Productos</h1>
+
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger">
+                <b>Ocurrio un error:</b> @TempData["error"]
+            </div>
+        }
+
+        <a class="btn btn-success" href="/Producto/IrAgregar">Agregar</a>
+
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["mensaje"]
+            </div>
+        }
+
+        <table class="table table-info table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Fecha Ingreso</th>
+                    <th>¿Disponible?</th>
+                    <th>Fecha Caducidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (E_Producto producto in Model)
+                {
+                    <tr>
+                        <td>@producto.IdProducto</td>
+                        <td>@producto.Descripcion</td>
+                        <td>@producto.Precio.ToString("c")</td>
+                        <td>@producto.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                        <td>@producto.DisponibleDescripcion</td>
+                        <td>@producto.FechaCaducidad.ToString("dd/MM/yyyyy")</td>
+                        <td>
+                            <a href="/Producto/Eliminar?idProducto=@producto.IdProducto" class="btn btn-danger">Eliminar</a>
+                            <a href="/Producto/ObtenerParaEditar?idProducto=@producto.IdProducto" class="btn btn-info">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
